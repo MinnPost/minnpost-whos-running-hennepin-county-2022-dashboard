@@ -43,7 +43,7 @@
 	</aside>
 {/if}
 
-{#each items.races as race}
+{#each races as race, key}
     <section class="race-listing">
         <h2 class="m-archive-header">{race.office}</h2>
         {#if race.blurb}
