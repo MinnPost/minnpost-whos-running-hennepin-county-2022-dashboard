@@ -58,6 +58,7 @@
 		display: flex;
 		justify-content: flex-end;
 		font-size: var(--scale-3);
+		align-self: center;
 	}
 	.a-switch-toggle {
 		cursor: pointer;
@@ -250,12 +251,13 @@
 			<div class="a-filter-select">
 				<Select value={setSelectedOffice(params, items.races)} inputStyles="font-size: 1em; letter-spacing: inherit;" placeholder="Choose a race..."  items={items.race_select} on:select={handleOfficeSelect} on:clear={clearSelect} bind:this="{selectOffice}"></Select>
 			</div>
+			{#if items.dropped_out_candidates.length > 0}
+				<div class="a-filter-switch">
+					<Switch bind:checked={showDroppedOutCandidates} id="show-dropped-out-candidates"></Switch> <label class="a-switch-toggle show-dropped-out-candidates" for="show-dropped-out-candidates"><small class="a-form-caption">Show candidates who are no longer running</small></label>
+				</div>
+			{/if}
 		</div>
-		{#if items.dropped_out_candidates.length > 0}
-			<div class="a-filter-switch">
-				<Switch bind:checked={showDroppedOutCandidates} id="show-dropped-out-candidates"></Switch> <label class="a-switch-toggle show-dropped-out-candidates" for="show-dropped-out-candidates"><small class="a-form-caption">Show candidates who are no longer running</small></label>
-			</div>
-		{/if}
+		
 
 		{#key params}
 			<svelte:component this={results} params="{params}" items="{items}" />
